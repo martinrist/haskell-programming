@@ -84,9 +84,7 @@ mkCow' name' age' weight' =
 
 
 
------------------------------------------
 -- 17.7 - QuickCheck for Applicative laws
------------------------------------------
 
 data Bull =
       Fools
@@ -109,13 +107,13 @@ main :: IO ()
 main = quickBatch (monoid Twoo)
 
 
--- 17.9 - ZipList Monoid
+-- 17.8 - ZipList Monoid
 
 instance Semigroup a => Semigroup (ZipList a) where
     (<>) = liftA2 (<>)
 
 instance Monoid a => Monoid (ZipList a) where
-    mempty = ZipList []
+    mempty = pure mempty
 
 -- `ZipList` and `Sum` already have these instances
 -- instance Arbitrary a => Arbitrary (ZipList a) where

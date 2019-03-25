@@ -160,7 +160,7 @@
 - The `List` applicative maps a plurality of functions over a plurality of values, using a 'cartesian product'-style combination.
 
 
-### Maybe
+### `Maybe`
 
 - The `Maybe` applicative maps a possible function over a possible value.  To see the use of this, consider looking up values using the `lookup` function:
 
@@ -208,7 +208,7 @@
     Just "foobar"
     ```
 
-### IO
+### `IO`
 
 - The applicative context can also be `IO`:
 
@@ -222,7 +222,7 @@
     "foobar"
     ```
 
-### Identity
+### `Identity`
 
 - The `Identity` type is a way of introducing structure without changing the semantics of anything that's happening:
 
@@ -245,7 +245,7 @@
     ```
 
 
-### Constant
+### `Constant`
 
 - `Constant` is similar to `Identity` (in that it provides structure) but also acts like `const`.
 
@@ -268,7 +268,7 @@
     ```
 
 
-### Maybe
+### `Maybe`
 
 - Here we have a function inside a `Maybe`, applied to a value inside a `Maybe`.
 
@@ -423,14 +423,14 @@
     ```
 
 
-## 17.8 - ZipList Monoid
+## 17.8 - `ZipList` Monoid
 
 - The default monoid of lists is concatenation, but it's also possible to monoidally combine lists as parallel sequences:
 
     ```haskell
     instance Monoid a => Monoid (ZipList a) where
         mempty = pure mempty
-        mappend = liftA2 mapped
+        mappend = liftA2 mappend
     ```
 
 
