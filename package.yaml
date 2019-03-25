@@ -6,42 +6,94 @@ author:              "Martin Rist"
 maintainer:          "mlr-github@martinrist.com"
 copyright:           "2019 Martin Rist"
 
-extra-source-files:
-- README.md
-
-# Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
-
-# To avoid duplicated efforts in documentation and dealing with the
-# complications of embedding Haddock markup inside cabal files, it is
-# common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/martinrist/haskell-programming#readme>
-
-dependencies:
-- base >= 4.7 && < 5
-
 library:
   source-dirs: src
+  dependencies:
+    - base
+    - time
+    - hspec
+    - containers
+    - QuickCheck
+    - optparse-applicative
+    - checkers
+    - bytestring
+    - wreq
+    - random
+    - transformers
+    - trifecta
+    - parsers
+    - text
+    - raw-strings-qq
+    - attoparsec
+    - scotty
+    - criterion
+    - bytestring
+    - network
+    - sqlite-simple
+    - safe
+    - wai
+    - warp
+    - aeson
+    - servant
+    - servant-server
+    - servant-client
+    - servant-docs
 
 executables:
-  haskell-programming-exe:
-    main:                Main.hs
-    source-dirs:         app
+
+  hangman:
+    main:           Main.hs
+    source-dirs:    app/hangman
     ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -Wall
+      - -Wno-type-defaults
     dependencies:
-    - haskell-programming
+      - base
+      - haskell-programming
+
+  encrypt:
+    main:           Main.hs
+    source-dirs:    app/encrypt
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -Wall
+      - -Wno-type-defaults
+    dependencies:
+      - base
+      - haskell-programming
+      - optparse-applicative
+
+  morse:
+    main:           Main.hs
+    source-dirs:    app/morse
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -Wall
+      - -Wno-type-defaults
+    dependencies:
+      - base
+      - haskell-programming
 
 tests:
   haskell-programming-test:
-    main:                Spec.hs
-    source-dirs:         test
+    main: Spec.hs
+    source-dirs: test
     ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
     dependencies:
-    - haskell-programming
+      - base
+      - hspec
+      - hspec-discover
+      - haskell-programming
+      - QuickCheck
+      - checkers
+      - hspec-checkers
