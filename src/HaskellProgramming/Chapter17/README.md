@@ -55,7 +55,7 @@
 
 ## 17.3 - `Functor` vs `Applicative`
 
-- Comparing the types of `<*>` and `fmap` (or `<$>`), we can see the difference between them is that `<$>` wraps the funciton in a `f`:
+- Comparing the types of `<*>` and `fmap` (or `<$>`), we can see the difference between them is that `<$>` wraps the function in a `f`:
 
     ```haskell
     (<$>) :: Functor f     =>   (a -> b) -> f a -> f b
