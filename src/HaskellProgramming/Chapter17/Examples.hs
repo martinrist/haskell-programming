@@ -1,10 +1,10 @@
 module HaskellProgramming.Chapter17.Examples where
 
-import Control.Applicative
-import Data.Monoid
-import Test.QuickCheck
-import Test.QuickCheck.Checkers
-import Test.QuickCheck.Classes
+import           Control.Applicative
+import           Data.Monoid
+import           Test.QuickCheck
+import           Test.QuickCheck.Checkers
+import           Test.QuickCheck.Classes
 
 
 ---------------------------
@@ -24,10 +24,7 @@ newtype Constant a b =
 -- Maybe applicative example to validate Persons
 
 validateLength :: Int -> String -> Maybe String
-validateLength maxLen s =
-    if length s > maxLen
-       then Nothing
-       else Just s
+validateLength maxLen s = if length s > maxLen then Nothing else Just s
 
 newtype Name = Name String deriving (Eq, Show)
 newtype Address = Address String deriving (Eq, Show)
@@ -48,16 +45,14 @@ data Person =
 
 -- First attempt
 mkPerson :: String -> String -> Maybe Person
-mkPerson n a =
-    case mkName n of
-         Nothing -> Nothing
-         Just n' ->
-             case mkAddress a of
-                  Nothing -> Nothing
-                  Just a' -> Just $ Person n' a'
+mkPerson n a = case mkName n of
+    Nothing -> Nothing
+    Just n' -> case mkAddress a of
+        Nothing -> Nothing
+        Just a' -> Just $ Person n' a'
 
 -- Second attempt
-mkPerson' :: String -> String ->  Maybe Person
+mkPerson' :: String -> String -> Maybe Person
 mkPerson' n a = Person <$> mkName n <*> mkAddress a
 
 
@@ -70,22 +65,22 @@ data Cow = Cow {
     } deriving (Eq, Show)
 
 noEmpty :: String -> Maybe String
-noEmpty "" = Nothing
+noEmpty ""  = Nothing
 noEmpty str = Just str
 
 noNegative :: Int -> Maybe Int
-noNegative n | n >= 0 = Just n
+noNegative n | n >= 0    = Just n
              | otherwise = Nothing
 
 mkCow :: String -> Int -> Int -> Maybe Cow
-mkCow name' age' weight' = Cow <$> noEmpty name' <*> noNegative age' <*> noNegative weight'
+mkCow name' age' weight' =
+    Cow <$> noEmpty name' <*> noNegative age' <*> noNegative weight'
 
 -- alternative using `liftA3`
 
 mkCow' :: String -> Int -> Int -> Maybe Cow
-mkCow' name' age' weight' = liftA3 Cow (noEmpty name')
-                                       (noNegative age')
-                                       (noNegative weight')
+mkCow' name' age' weight' =
+    liftA3 Cow (noEmpty name') (noNegative age') (noNegative weight')
 
 
 
@@ -99,9 +94,7 @@ data Bull =
     deriving (Eq, Show)
 
 instance Arbitrary Bull where
-    arbitrary =
-        frequency [ (1, return Fools)
-                  , (1, return Twoo) ]
+    arbitrary = frequency [(1, return Fools), (1, return Twoo)]
 
 instance Semigroup Bull where
     _ <> _ = Fools
@@ -109,7 +102,8 @@ instance Semigroup Bull where
 instance Monoid Bull where
     mempty = Fools
 
-instance EqProp Bull where (=-=) = eq
+instance EqProp Bull where
+    (=-=) = eq
 
 main :: IO ()
 main = quickBatch (monoid Twoo)
@@ -130,4 +124,5 @@ instance Monoid a => Monoid (ZipList a) where
 -- instance Arbitrary a => Arbitrary (Sum a) where
 --     arbitrary = Sum <$> arbitrary
 
-instance Eq a => EqProp (ZipList a) where (=-=) = eq
+instance Eq a => EqProp (ZipList a) where
+    (=-=) = eq

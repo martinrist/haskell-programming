@@ -20,8 +20,8 @@ instance Eq a => EqProp (Constant a b) where
     (=-=) = eq
 
 instance Functor (Constant a) where
-    fmap _ (Constant a) = Constant $ a
+    fmap _ (Constant a) = Constant a
 
 instance Monoid a => Applicative (Constant a) where
     pure x = Constant mempty
-    (Constant a) <*> (Constant a') = Constant $ (a <> a')
+    (Constant a) <*> (Constant a') = Constant (a <> a')
