@@ -376,7 +376,7 @@
     ```
 
 
-## 17.7 - QuickChecking Applicative laws
+## 17.7 - QuickChecking `Applicative` laws
 
 - To avoid having to write own versions of properties for various laws, use the `checkers` library:
 
@@ -434,7 +434,7 @@
     ```
 
 
-## 17.9 - Either and Validation Applicative
+## 17.9 - `Either` and `Validation` Applicative
 
 - Specialisation of `f` to `Either e`:
 
