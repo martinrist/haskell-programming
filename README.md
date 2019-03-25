@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/martinrist/haskell-programming.svg?branch=master)](https://travis-ci.org/martinrist/haskell-programming)
+[![Build Status](https://travis-ci.com/martinrist/haskell-programming.svg?branch=master)](https://travis-ci.com/martinrist/haskell-programming)
 
 # ['Haskell Programming from First Principles'](http://haskellbook.com)
 
