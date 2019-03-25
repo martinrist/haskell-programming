@@ -1,6 +1,6 @@
 module Main where
 
-import           ProgrammingHaskell.Chapter13.Hangman
+import           HaskellProgramming.Chapter13.Hangman
 import           Control.Monad                  ( forever )
 import           Data.Maybe                     ( isJust )
 import           System.Exit                    ( exitSuccess )

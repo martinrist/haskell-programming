@@ -2,7 +2,7 @@
 
 module Main where
 
-import           ProgrammingHaskell.Chapter11.Exercises.Cipher
+import           HaskellProgramming.Chapter11.Exercises.Cipher
 
 import           Options.Applicative.Common
 import           Options.Applicative.Builder

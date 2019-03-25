@@ -4,7 +4,7 @@ import           Control.Monad                  ( forever
                                                 , when
                                                 )
 import           Data.Traversable               ( traverse )
-import           ProgrammingHaskell.Chapter14.Morse
+import           HaskellProgramming.Chapter14.Morse
                                                 ( stringToMorse
                                                 , morseToChar
                                                 )
