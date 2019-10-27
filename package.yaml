@@ -14,6 +14,7 @@ library:
     - hspec
     - containers
     - QuickCheck
+    - hspec-checkers
     - optparse-applicative
     - checkers
     - bytestring
