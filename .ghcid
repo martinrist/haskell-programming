@@ -1,0 +1,2 @@
+--command "stack ghci haskell-programming:lib haskell-programming:test:haskell-programming-test"
+--test "Main.main"
