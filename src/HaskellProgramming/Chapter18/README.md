@@ -89,6 +89,20 @@
     bind :: Monad m => (a -> m b) -> m a -> m b
     bind f x = join $ fmap f x
     ```
+    
+- `Control.Monad` also includes a set of lifting-functions (like `liftA`, `liftA2` etc for `Applicative`):
+
+    ```haskell
+    -- Both of these are just `fmap` with different class constraints:
+    liftA :: Applicative f => (a  -> b) -> f a  -> f b
+    liftM :: Monad m       => (a1 -> r) -> m a1 -> m r
+
+    liftA2 :: Applicative f => (a  -> b  -> c) -> f a  -> f b  -> f c
+    liftM2 :: Monad m       => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r
+    
+    liftA3 :: Applicative f => (a  -> b  -> c  -> d) -> f a  -> f b  -> f c  -> f d
+    liftM3 :: Monad m       => (a1 -> a2 -> a3 -> r) -> m a1 -> m a2 -> m a3 -> m r   
+    ```
 
 ## 18.3 - `do` Syntax and Monads
 
@@ -191,7 +205,7 @@
 - As we nest more and more, the value of `do` becomes more apparent:
 
     ```haskell
-    twoBinds :: IO (
+    twoBinds :: IO ()
     twoBinds = do
         putStrLn "Please enter your name:"
         name <- getLine
@@ -211,7 +225,7 @@
     ```
 
 
-## 18.4 - Examples of Monad use
+## 18.4 - Examples of `Monad` use
 
 ### List
 
@@ -247,7 +261,7 @@
     [1, 4, 4, 9]
     ```
 
-### Maybe
+### `Maybe`
 
 - The signatures of `>>=` and `return` specialised to the 'Maybe' monad are:
 
@@ -321,7 +335,7 @@
     ```
 
 
-### Either
+### `Either`
 
 - The signatures of `>>=` and `return` specialised to the 'Either' monad are:
 
@@ -392,7 +406,7 @@
     ```
 
 
-## 18.5 - Monad laws
+## 18.5 - `Monad` laws
 
 - Identity laws state that `return` should be neutral and not perform any computations:
 
