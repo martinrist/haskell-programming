@@ -2,6 +2,7 @@ module HaskellProgramming.Chapter16.Exercises.FunctorInstances where
 
 import Test.QuickCheck
 import GHC.Arr
+import Test.QuickCheck.Checkers
 
 -- Exercise 1 - `Bool`
 
@@ -27,6 +28,9 @@ instance Functor BoolAndSomethingElse where
     fmap f (False' a) = False' (f a)
     fmap f (True'  a) = True'  (f a)
 
+instance Eq a => EqProp (BoolAndSomethingElse a) where
+    (=-=) = eq
+
 
 -- Exercise 3 - BoolAndMaybeSomethingElse
 
@@ -41,6 +45,9 @@ instance Arbitrary a => Arbitrary (BoolAndMaybeSomethingElse a) where
 instance Functor BoolAndMaybeSomethingElse where
     fmap _ Falsish = Falsish
     fmap f (Truish a) = Truish (f a)
+
+instance Eq a => EqProp (BoolAndMaybeSomethingElse a) where
+        (=-=) = eq
 
 
 -- Exercise 4 - Mu
