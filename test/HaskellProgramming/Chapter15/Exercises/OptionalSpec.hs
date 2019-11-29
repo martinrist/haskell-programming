@@ -3,6 +3,9 @@ module HaskellProgramming.Chapter15.Exercises.OptionalSpec where
 import Test.Hspec
 import Data.Monoid
 import HaskellProgramming.Chapter15.Exercises.Optional
+import Test.QuickCheck
+import Test.QuickCheck.Classes
+import Test.Hspec.Checkers
 
 testOptional :: Spec
 testOptional = context "Monoid instance for Optional" $ do
@@ -19,6 +22,13 @@ testOptional = context "Monoid instance for Optional" $ do
     it "Correctly `mappend`s `Nada` with `Nada`" $
         Nada `mappend` Nada `shouldBe` (Nada :: Optional (Sum Int))
 
+testOptionalWithCheckers :: Spec
+testOptionalWithCheckers =
+    context "Semigroup for Optional" $ do
+        testBatch $ semigroup (undefined :: (Optional String, Int))
+        testBatch $ monoid (undefined :: Optional String)
 
 spec :: Spec
-spec = testOptional
+spec = do
+    testOptional
+    testOptionalWithCheckers
