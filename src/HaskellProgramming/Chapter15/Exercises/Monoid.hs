@@ -1,3 +1,5 @@
+{-# LANGUAGE TupleSections #-}
+
 module HaskellProgramming.Chapter15.Exercises.Monoid where
 
 import HaskellProgramming.Chapter15.Exercises.Semigroup
@@ -59,4 +61,4 @@ instance Semigroup a => Semigroup (Mem s a) where
                                          (a <> a', s'')
 
 instance Monoid a => Monoid (Mem s a) where
-    mempty = Mem $ \s -> (mempty, s)
+    mempty = Mem (mempty,)
