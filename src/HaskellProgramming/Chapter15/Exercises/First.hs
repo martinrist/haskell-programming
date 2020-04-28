@@ -2,6 +2,7 @@ module HaskellProgramming.Chapter15.Exercises.First where
 
 import HaskellProgramming.Chapter15.Exercises.Optional
 import Test.QuickCheck
+import Test.QuickCheck.Checkers
 import Control.Monad
 
 newtype First' a =
@@ -19,3 +20,6 @@ instance Monoid (First' a) where
 instance Arbitrary a => Arbitrary (First' a) where
     arbitrary = frequency [(1, return (First' Nada)),
                            (3, First' . Only <$> arbitrary)]
+
+instance Eq a => EqProp (First' a) where
+    (=-=) = eq
