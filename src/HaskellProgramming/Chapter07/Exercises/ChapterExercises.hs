@@ -19,12 +19,12 @@ tensDigit x = d
 question1Tests :: Spec
 question1Tests =
     describe "Question 1 - `tensDigit`" $ do
-        it "x < 10" $ tensDigit 9 `shouldBe` 0
-        it "x = 10" $ tensDigit 10 `shouldBe` 1
-        it "10 < x < 100" $ tensDigit 42 `shouldBe` 4
-        it "x = 100" $ tensDigit 100 `shouldBe` 0
-        it "x > 100" $ tensDigit 12345 `shouldBe` 4
-        it "x = 0" $ tensDigit 0 `shouldBe` 0
+        it "x < 10" $ tensDigit 9 `shouldBe` (0 :: Int)
+        it "x = 10" $ tensDigit 10 `shouldBe` (1 :: Int)
+        it "10 < x < 100" $ tensDigit 42 `shouldBe` (4 :: Int)
+        it "x = 100" $ tensDigit 100 `shouldBe` (0 :: Int)
+        it "x > 100" $ tensDigit 12345 `shouldBe` (4 :: Int)
+        it "x = 0" $ tensDigit 0 `shouldBe` (0 :: Int)
 
 -- Question 2
 foldBool1 :: a -> a -> Bool -> a
@@ -59,7 +59,7 @@ question3Tests :: Spec
 question3Tests =
     describe "Question 3 - `g`" $
     it "Applies function to first tuple component" $
-    g (+ 1) (1, "foo") == (2, "foo")
+    g (+ 1) (1, "foo") == (2 :: Int, "foo")
 
 -- Question 4
 roundTrip :: (Show a, Read a) => a -> a

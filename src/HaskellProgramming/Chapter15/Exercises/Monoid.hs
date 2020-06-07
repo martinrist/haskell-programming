@@ -1,10 +1,11 @@
+-- This file deliberately contains orphan instances for illustration, so we need to disable the warning
+{-# OPTIONS_GHC -Wno-orphans #-}
 {-# LANGUAGE TupleSections #-}
 
 module HaskellProgramming.Chapter15.Exercises.Monoid where
 
 import HaskellProgramming.Chapter15.Exercises.Semigroup
 import Test.QuickCheck
-import Text.Show.Functions
 
 -- Question 1 -Trivial
 

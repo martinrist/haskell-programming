@@ -16,7 +16,7 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Sum a b) where
 
 instance Functor (Sum e) where
     fmap f (First a) = First (f a)
-    fmap f (Second b) = Second b
+    fmap _ (Second b) = Second b
 
 
 -- Question 2 - Company

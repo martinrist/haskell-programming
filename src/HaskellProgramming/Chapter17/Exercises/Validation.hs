@@ -1,7 +1,6 @@
 module HaskellProgramming.Chapter17.Exercises.Validation where
 
 import Test.QuickCheck hiding (Success, Failure)
-import Control.Applicative
 import Test.QuickCheck.Checkers
 
 data Validation e a =
@@ -21,6 +20,7 @@ instance (Arbitrary e, Arbitrary a) => Arbitrary (Validation e a) where
 instance (Eq e, Eq a) => EqProp (Validation e a) where
     Failure e =-= Failure e' = e `eq` e'
     Success a =-= Success a' = a `eq` a'
+    _ =-= _                  = property False
 
 instance Functor (Validation e) where
     fmap _ (Failure x) = Failure x

@@ -84,12 +84,12 @@ testOr :: Spec
 testOr = context "Or" $ do
     it "Obeys Semigroup associative law" $ property
         (semigroupAssoc :: AssociativityProp (Or Int String))
-    it "Discards `Fst` when followed by `Snd`" $ Fst 1 <> Snd 2 `shouldBe` Snd 2
+    it "Discards `Fst` when followed by `Snd`" $ Fst (1 :: Int) <> Snd 2 `shouldBe` Snd (2 :: Int)
     it "Discards `Fst` when followed by `Fst`"
         $          Fst 1
         <>         Fst 2
         `shouldBe` (Fst 2 :: Or Int Int)
-    it "Keeps `Snd` when followed by `Fst`" $ Snd 1 <> Fst 2 `shouldBe` Snd 1
+    it "Keeps `Snd` when followed by `Fst`" $ Snd 1 <> Fst (2 :: Int) `shouldBe` Snd (1 :: Int)
     it "Keeps `Snd` when followed by `Snd`"
         $          Snd 1
         <>         Snd 2
@@ -144,7 +144,7 @@ testValidation = context "Validation" $ do
     it "Retains initial `Success` followed by `Failure`"
         $          Success 1
         <>         Failure "blah"
-        `shouldBe` Success 1
+        `shouldBe` Success (1 :: Int)
     it "Mappends multiple `Failure`s"
         $          Failure "woot"
         <>         Failure "blah"
@@ -156,7 +156,7 @@ testValidation = context "Validation" $ do
     it "Skips first `Failure` followed by `Success`"
         $          Failure "woot"
         <>         Success 2
-        `shouldBe` Success 2
+        `shouldBe` Success (2 :: Int)
 
 spec :: Spec
 spec = do

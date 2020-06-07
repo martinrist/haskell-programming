@@ -2,7 +2,6 @@ module HaskellProgramming.Chapter17.Exercises.ZipListSpec where
 
 import           HaskellProgramming.Chapter17.Exercises.ZipList
 import           Test.Hspec
-import           Test.QuickCheck
 import           Test.QuickCheck.Classes
 import           Test.Hspec.Checkers
 

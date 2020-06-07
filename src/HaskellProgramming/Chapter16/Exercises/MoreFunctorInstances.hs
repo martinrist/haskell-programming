@@ -4,7 +4,7 @@ module HaskellProgramming.Chapter16.Exercises.MoreFunctorInstances where
 
 import           Test.QuickCheck
 import           Control.Applicative
-import           Text.Show.Functions
+import           Text.Show.Functions ()
 
 -- Question 1 - Quant
 

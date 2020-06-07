@@ -1,6 +1,5 @@
 module HaskellProgramming.Chapter13.Hangman where
 
-import           Data.Char                      ( toLower )
 import           Data.List                      ( intersperse )
 import           Data.Maybe                     ( fromMaybe )
 import           System.Random                  ( randomRIO )

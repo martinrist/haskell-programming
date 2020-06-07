@@ -1,7 +1,8 @@
+-- This file deliberately contains orphan instances for illustration, so we need to disable the warning
+{-# OPTIONS_GHC -Wno-orphans #-}
 module HaskellProgramming.Chapter17.Examples where
 
 import           Control.Applicative
-import           Data.Monoid
 import           Test.QuickCheck
 import           Test.QuickCheck.Checkers
 import           Test.QuickCheck.Classes

@@ -26,7 +26,7 @@ listOrdered xs = snd $ foldr go (Nothing, True) xs
   where
     go _ status@(_      , False) = status
     go y (       Nothing, t    ) = (Just y, t)
-    go y (       Just x , t    ) = (Just y, x >= y)
+    go y (       Just x , _    ) = (Just y, x >= y)
 
 prop_listOrdered :: (Ord a) => [a] -> Bool
 prop_listOrdered = listOrdered . sort
@@ -108,6 +108,7 @@ testApplicationProperty = context "Function application" $
 compositionProperty :: Eq c => Fun a b -> Fun b c -> a -> Bool
 compositionProperty (Fun _ f) (Fun _ g) a = (g . f) a == g(f a)
 
+testCompositionProperty :: SpecWith ()
 testCompositionProperty = context "Function composition" $
     it "`(f . g) a` gives the same result as f (g a)`" $
         property (compositionProperty :: Fun Int String -> Fun String Int -> Int -> Bool)

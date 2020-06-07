@@ -7,7 +7,7 @@ import           Control.Applicative
 
 -- This gives us an instance of `Show` for functions
 -- which in turn allows us to derive an instance for `Combine`
-import           Text.Show.Functions
+import           Text.Show.Functions ()
 
 
 -- Question 1 - Trivial
@@ -104,7 +104,7 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Or a b) where
 instance Semigroup (Or a b) where
     Snd a <> _     = Snd a
     _     <> Snd b = Snd b
-    Fst a <> Fst b = Fst b
+    Fst _ <> Fst b = Fst b
 
 
 -- Question 9 - Combine

@@ -12,6 +12,7 @@ testMyZip = context "myZip" $ it "Works the same as built-in `zip`" $ property m
 
 myZipWithProperty :: Eq c => Fun (a, b) c -> [a] -> [b] -> Bool
 myZipWithProperty (Fn2 f) xs ys = myZipWith f xs ys == zipWith f xs ys
+myZipWithProperty _ _ _ = False
 
 testMyZipWith :: Spec
 testMyZipWith =

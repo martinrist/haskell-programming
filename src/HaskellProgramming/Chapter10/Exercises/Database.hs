@@ -28,6 +28,7 @@ isDbDate i =
 -- The problem is that this is a partial function
 dbDateToUtcTime :: DatabaseItem -> UTCTime
 dbDateToUtcTime (DbDate t) = t
+dbDateToUtcTime _ = undefined
 
 filterDbDate :: [DatabaseItem] -> [UTCTime]
 filterDbDate = map dbDateToUtcTime . filter isDbDate

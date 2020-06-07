@@ -1,7 +1,6 @@
 module HaskellProgramming.Chapter09.Exercises.StandardFunctionsSpec where
 
 import Control.Monad (join)
-import Data.List (maximumBy, minimumBy)
 import HaskellProgramming.Chapter09.Exercises.StandardFunctions
 import Test.Hspec
 import Test.QuickCheck

@@ -111,7 +111,7 @@ data BookType
 -- A simple type synonym - infinite cardinality
 type AuthorName = String
 
--- Product type 
+-- Product type
 data Author =
     Author (AuthorName, BookType)
 
@@ -131,3 +131,4 @@ insert' b (Node left a right)
     | b == a = Node left a right
     | b < a = Node (insert' b left) a right
     | b > a = Node left a (insert' b right)
+    | otherwise = undefined

@@ -1,6 +1,5 @@
 module HaskellProgramming.Chapter17.Exercises.ZipList where
 
-import           Control.Applicative
 import           Test.QuickCheck
 import           Test.QuickCheck.Checkers
 import           HaskellProgramming.Chapter17.Exercises.ListApplicative
@@ -25,6 +24,6 @@ instance Applicative ZipList' where
     pure x = ZipList' $ toList (repeat x)
     ZipList' fs <*> ZipList' vs = ZipList' $ zipListApply fs vs
       where
-        zipListApply Nil         _           = Nil
-        zipListApply _           Nil         = Nil
-        zipListApply (Cons f fs) (Cons v vs) = Cons (f v) (zipListApply fs vs)
+        zipListApply Nil          _            = Nil
+        zipListApply _            Nil          = Nil
+        zipListApply (Cons f fs') (Cons v vs') = Cons (f v) (zipListApply fs' vs')

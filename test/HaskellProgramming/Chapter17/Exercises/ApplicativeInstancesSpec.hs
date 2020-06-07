@@ -1,9 +1,8 @@
 module HaskellProgramming.Chapter17.Exercises.ApplicativeInstancesSpec where
 
 import           HaskellProgramming.Chapter17.Exercises.ApplicativeInstances
-import Data.Monoid
+import           Data.Monoid
 import           Test.Hspec
-import           Test.QuickCheck
 import           Test.QuickCheck.Classes
 import           Test.Hspec.Checkers
 

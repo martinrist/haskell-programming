@@ -2,7 +2,6 @@ module HaskellProgramming.Chapter17.Exercises.ListApplicative where
 
 import           Test.QuickCheck
 import           Control.Applicative
-import           Test.QuickCheck.Checkers
 
 data List a =
     Nil
@@ -35,7 +34,7 @@ instance Applicative List where
     fs <*> vs = flatMap (`fmap` vs) fs
 
 take' :: Int -> List a -> List a
-take' n Nil         = Nil
+take' _ Nil         = Nil
 take' 0 _           = Nil
 take' n (Cons a as) = Cons a (take' (n - 1) as)
 

@@ -48,6 +48,7 @@ greetIfCool coolness =
 -- Section 4.5 - Tuples
 -- ====================
 -- `fst` and `snd` extract values from a two-tuple
+myTup :: (Int, String)
 myTup = (1, "blah")
 
 first = fst myTup

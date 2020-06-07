@@ -7,8 +7,6 @@ import           Test.Hspec
 import           Test.QuickCheck         hiding ( Success
                                                 , Failure
                                                 )
-import           Test.QuickCheck.Function
-import           Data.Semigroup
 
 
 -- Question 1 - Identity

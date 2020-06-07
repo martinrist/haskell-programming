@@ -2,7 +2,6 @@ module HaskellProgramming.Chapter12.Exercises.StringProcessingSpec where
 
 import HaskellProgramming.Chapter12.Exercises.StringProcessing
 import Test.Hspec
-import Test.QuickCheck
 
 testNotThe :: Spec
 testNotThe =

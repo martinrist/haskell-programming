@@ -2,7 +2,6 @@ module HaskellProgramming.Chapter15.Exercises.FirstSpec where
 
 import Test.Hspec
 import Test.Hspec.Checkers
-import Data.Monoid
 import Test.QuickCheck
 import Test.QuickCheck.Classes
 import HaskellProgramming.Chapter15.Exercises.First

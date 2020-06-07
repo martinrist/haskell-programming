@@ -4,7 +4,6 @@ import           HaskellProgramming.Chapter16.Exercises.Sum
 import           HaskellProgramming.Chapter16.FunctorLaws
 import           Test.Hspec
 import           Test.QuickCheck
-import           Test.QuickCheck.Function
 
 
 testSum :: Spec

@@ -1,7 +1,6 @@
 module HaskellProgramming.Chapter17.ApplicativeQuickCheckSpec where
 
 import           Test.Hspec
-import           Test.QuickCheck
 import           Test.QuickCheck.Classes
 import           Test.Hspec.Checkers
 

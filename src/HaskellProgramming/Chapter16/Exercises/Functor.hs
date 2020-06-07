@@ -1,8 +1,9 @@
+-- This file deliberately contains orphan instances for illustration, so we need to disable the warning
+{-# OPTIONS_GHC -Wno-orphans #-}
 module HaskellProgramming.Chapter16.Exercises.Functor where
 
 import HaskellProgramming.Chapter15.Exercises.Semigroup
 import Test.QuickCheck
-import Text.Show.Functions
 import Control.Applicative
 
 -- Question 1 - Identity
@@ -46,6 +47,7 @@ instance Functor (Three' a) where
 
 
 -- Question 6 - Four
+
 
 instance Functor (Four a b c) where
     fmap f (Four a b c d) = Four a b c (f d)

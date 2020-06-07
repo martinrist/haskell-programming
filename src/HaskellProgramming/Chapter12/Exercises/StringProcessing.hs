@@ -15,7 +15,7 @@ replaceThe = unwords . map (fromMaybe "a" . notThe) . words
 -- Question 2
 startsWithVowel :: String -> Bool
 startsWithVowel "" = False
-startsWithVowel (x:xs) = x `elem` "aeiou"
+startsWithVowel (x:_) = x `elem` "aeiou"
 
 wordPairs :: [String] -> [(String, String)]
 wordPairs ws = zip ws (tail ws)

@@ -83,9 +83,9 @@ twoBinds' =
 -- Maybe
 
 data Cow = Cow {
-     name   :: String
-   , age    :: Int
-   , weight :: Int
+     cowName   :: String
+   , cowAge    :: Int
+   , cowWeight :: Int
   } deriving (Eq, Show)
 
 -- Validation functions
@@ -99,8 +99,8 @@ noNegative n | n >= 0    = Just n
 
 weightCheck :: Cow -> Maybe Cow
 weightCheck c =
-    let w = weight c
-        n = name c
+    let w = cowWeight c
+        n = cowName c
     in if n == "Bess" && w > 499
           then Nothing
           else Just c
@@ -128,24 +128,25 @@ mkCow' name age weight = do
     weightCheck (Cow namey agey weighty)
 
 
-f :: Integer -> Maybe Integer
-f 0 = Nothing
-f n = Just n
+functionF :: Integer -> Maybe Integer
+functionF 0 = Nothing
+functionF n = Just n
 
 
-g :: Integer -> Maybe Integer
-g i =
+functionG :: Integer -> Maybe Integer
+functionG i =
     if even i
     then Just (i + 1)
     else Nothing
 
-h :: Integer -> Maybe String
-h i = Just ("10191" ++ show i)
+functionH :: Integer -> Maybe String
+functionH i = Just ("10191" ++ show i)
 
+doSomething' :: Integer -> Maybe (Integer, Integer, String)
 doSomething' n = do
-    a <- f n
-    b <- g a
-    c <- h b
+    a <- functionF n
+    b <- functionG a
+    c <- functionH b
     pure (a, b, c)
 
 
@@ -159,8 +160,8 @@ type Coders = Int
 
 data SoftwareShop =
     Shop {
-        founded     :: Founded
-      , programmers :: Coders
+        shopFounded     :: Founded
+      , shopProgrammers :: Coders
     } deriving (Eq, Show)
 
 -- possible error conditions

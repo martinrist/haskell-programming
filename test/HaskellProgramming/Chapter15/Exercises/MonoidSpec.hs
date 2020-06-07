@@ -7,7 +7,6 @@ import           Test.Hspec
 import           Test.QuickCheck         hiding ( Success
                                                 , Failure
                                                 )
-import           Data.Semigroup
 
 
 -- Question 1 - Trivial
@@ -83,6 +82,7 @@ testComp = context "Comp" $ do
 
 -- Question 8 - Mem
 
+f' :: Mem Int String
 f' = Mem $ \s -> ("hi", s + 1)
 
 testMem :: Spec

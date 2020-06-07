@@ -1,6 +1,5 @@
 module HaskellProgramming.Chapter15.Examples where
 
-import Data.Monoid
 import Test.QuickCheck
 import HaskellProgramming.Chapter15.MonoidLaws
 

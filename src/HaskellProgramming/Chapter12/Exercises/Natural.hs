@@ -15,4 +15,4 @@ integerToNat x
     | otherwise = Just $ go x
   where
     go 0 = Zero
-    go x = Succ $ go (x - 1)
+    go y = Succ $ go (y - 1)

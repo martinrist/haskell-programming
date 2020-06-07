@@ -3,7 +3,6 @@ module HaskellProgramming.Chapter15.Exercises.First where
 import HaskellProgramming.Chapter15.Exercises.Optional
 import Test.QuickCheck
 import Test.QuickCheck.Checkers
-import Control.Monad
 
 newtype First' a =
     First' { getFirst' :: Optional a }
@@ -12,7 +11,7 @@ newtype First' a =
 instance Semigroup (First' a) where
     First' Nada <> y           = y
     x           <> First' Nada = x
-    x           <> y           = x
+    x           <> _           = x
 
 instance Monoid (First' a) where
     mempty = First' Nada
