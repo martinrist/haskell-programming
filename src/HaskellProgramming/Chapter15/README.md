@@ -2,11 +2,11 @@
 
 ## 15.3 - Monoid
 
-- A _monoid_ is a set that is closed under a binary associative operation with an identity.
+- A _monoid_ is a set that is closed under a binary associative operation with an identity:
 
     ```haskell
     -- `mappend` is the binary operation
-    > mappend [1..5] [4..6]
+    > mappend [1..3] [4..6]
     [1, 2, 3, 4, 5, 6]
 
     > mappend "foo" "bar"
@@ -18,6 +18,9 @@
 
     > mappend [] [1..5]
     [1, 2, 3, 4, 5]
+
+    > mempty :: [Int]
+    []
     ```
 
 
@@ -27,7 +30,7 @@
 
     ```haskell
     > :i Monoid
-    class Monoid a where
+    class Semigroup a => Monoid a where
         mempty :: a
         mappend :: a -> a -> a
         mconcat :: [a] -> a
@@ -40,7 +43,8 @@
     mconcat = foldr mappend mempty
     ```
 
-- There are additional laws, but these aren't defined by the typeclass - it's the responsibility of typeclass instances to ensure these rules are met by the instance implementations.
+- There are additional laws, but these aren't defined by the typeclass - it's the responsibility of typeclass instances
+to ensure these rules are met by the instance implementations.
 
 
 ## 15.5 - Examples of `Monoid`
@@ -66,11 +70,13 @@
 
 ## 15.6 - Why `Integer` doesn't have a `Monoid`
 
-- The type `Integer` doesn't have a `Monoid` instance, because the monoid implementation for numbers could either be summation or multiplication:
+- The type `Integer` doesn't have a `Monoid` instance, because the monoid implementation for numbers could either be
+summation or multiplication:
     - Both these operations are monoidal.
     - However, each type should only have one instance for a given typeclass.
 
-- To resolve this, `Sum` and `Product` newtype wrappers have declared in `Data.Monoid`.  Each of these newtypes has the relevant monoid:
+- To resolve this, `Sum` and `Product` newtype wrappers have declared in `Data.Monoid`.  Each of these `newtype`s has
+the relevant monoid:
 
     ```haskell
     > import Data.Monoid
@@ -92,7 +98,8 @@
     Product {getProduct = 1}
     ```
 
-- This is a general pattern - if we need multiple instances for a given typeclass, create newtype wrappers for each instance and attach the instance to the newtype.
+- This is a general pattern - if we need multiple instances for a given typeclass, create newtype wrappers for each
+instance and attach the instance to the newtype.
 
 - `mappend` only takes two arguments.  To use more, either use parentheses, or use `mappend`'s infix variant, `<>`:
 
@@ -108,13 +115,34 @@
     Sum {getSum = 10}
     ```
 
+- Note that the `Sum` and `Product` types are defines as `newtype`s rather than using `data`:
+
+    ```haskell
+    > :import Data.Monoid
+    > :i Sum
+    newtype Data.Monoid.Sum a = Sum {getSum :: a}
+    ```
+
+- Consider the following two ways of defining a type `Server`:
+
+    ```haskell
+    data Server = Server String
+
+    newtype Server' = Server' String
+    ```
+
+    - there's not a lot of semantic difference between the two
+    - using `newtype` constrains the datatype to have a single, unary data constructor
+    - using `newtype` also guarantees that there's no additional runtime overhead in "wrapping" the original type
+
 
 ## 15.7 - Why bother?
 
 - Common uses of monoids are to structure and describe common modes of processing data, e.g.:
     - Incrementally processing a large dataset
     - Rolling up data into aggregations (cf. summation)
-    - Using identity to provide extra values when doing 'divide-and-conquer' algorithms that require padding out to an even number / power of two.
+    - Using identity to provide extra values when doing 'divide-and-conquer' algorithms that require padding out to an
+    even number / power of two.
 
 - _Abelian monoids_ or _commutative monoids_ are monoids where the order of combination does not matter, i.e.:
 
@@ -158,11 +186,13 @@
 
 ## 15.9 - Different instance, same representation
 
-- For some datatypes, the meaning of 'append', in the context of `Monoid` is less clear than for lists and numbers:
+- For some datatypes, the meaning of 'append', in the context of `Monoid` is less clear than for lists and numbers.
 
-- 'Mappending' is best thought of not as a way of combining values, but as a way to condense any set of values to a summary value.
+- '`mappend`ing' is best thought of not as a way of combining values, but as a way to condense any set of values to a
+summary value.
 
-- `Bool` has two possible monoids - one of conjuction (represented by the `All` newtype) and one of disjunction (represented by `Andy`):
+- `Bool` has two possible monoids - one of conjuction (represented by the `All` newtype) and one of disjunction
+(represented by `Any`):
 
     ```haskell
     > import Data.Monoid
@@ -192,7 +222,8 @@
     Last {getLast = Just 2}
     ```
 
-- When declaring `Monoid` instances for types, beware of _orphan instances_, where the instance is declared in a different module from both the type and the typeclass:
+- When declaring `Monoid` instances for types, beware of _orphan instances_, where the instance is declared in a
+different module from both the type and the typeclass:
     - Can easily lead to conflicting declarations.
     - To address if you own either the type or typeclass, put the instance in the same module as the thing you own.
     - If you own neither, define a newtype wrapping the original type, then define the instance in your module.
@@ -200,7 +231,8 @@
 
 ## 15.10 - Reusing algebras by asking for algebras
 
-- In the following cases, you are getting a new `Monoid` for a larger type by reusing the `Monoid` instances of the component types:
+- In the following cases, you are getting a new `Monoid` for a larger type by reusing the `Monoid` instances of the
+component types:
 
     ```haskell
     instance Monoid b => Monoid (a -> b)
@@ -208,11 +240,13 @@
     instance (Monoid a, Monoid b, Monoid c) => Monoid (a, b, c)
     ```
 
-- The third variety of monoid for `Maybe a` combines the 'inner' a's (assuming they are monoids themselves:
+- So far, we've seen two examples of a `Monoid` for `Maybe` - `First` and `Last`.  The third variety of `Monoid`
+for `Maybe a` combines the 'inner' `a`'s (assuming they are `Monoid`s themselves):
 
     ```haskell
     instance Monoid a => Monoid (Maybe a) where
     mempty = Nada
+
     mappend Nothing  x        = x
     mappend x        Nothing  = x
     mappend (Just x) (Just y) = Just (x `mappend` y)

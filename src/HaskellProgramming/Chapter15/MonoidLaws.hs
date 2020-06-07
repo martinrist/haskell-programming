@@ -16,14 +16,18 @@ wrappedFnAssoc unWrap v a b c = unWrap (a <> (b <> c)) v == unWrap ((a <> b) <> 
 -- Identity
 type IdentityProp a = a -> Bool
 
+{-# HLINT ignore monoidLeftIdentity "Monoid law, left identity" #-}
 monoidLeftIdentity :: (Eq m, Monoid m) => IdentityProp m
 monoidLeftIdentity a = (mempty <> a) == a
 
+{-# HLINT ignore monoidRightIdentity "Monoid law, right identity" #-}
 monoidRightIdentity :: (Eq m, Monoid m) => IdentityProp m
 monoidRightIdentity a = (a <> mempty) == a
 
+{-# HLINT ignore wrappedFnLeftIdentity "Monoid law, left identity" #-}
 wrappedFnLeftIdentity :: (Monoid m, Eq b) => (m -> (a -> b)) -> a -> IdentityProp m
 wrappedFnLeftIdentity unWrap v a = unWrap (mempty <> a) v == unWrap a v
 
+{-# HLINT ignore wrappedFnRightIdentity "Monoid law, right identity" #-}
 wrappedFnRightIdentity :: (Monoid m, Eq b) => (m -> (a -> b)) -> a -> IdentityProp m
 wrappedFnRightIdentity unWrap v a = unWrap (a <> mempty) v == unWrap a v
