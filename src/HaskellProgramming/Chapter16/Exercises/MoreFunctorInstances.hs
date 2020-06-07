@@ -6,6 +6,9 @@ import           Test.QuickCheck
 import           Control.Applicative
 import           Text.Show.Functions ()
 
+{-# HLINT ignore "Use newtype instead of data" #-}
+{-# HLINT ignore "Use <$>" #-}
+
 -- Question 1 - Quant
 
 data Quant a b =

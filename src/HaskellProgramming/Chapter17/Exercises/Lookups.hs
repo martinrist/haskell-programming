@@ -6,7 +6,7 @@ import Data.List (elemIndex)
 -- Question 1
 
 added :: Maybe Integer
-added = (+3) <$> (lookup (3 :: Int) $ zip [1, 2, 3] [4, 5, 6])
+added = (+ 3) <$> lookup (3 :: Int) (zip [1, 2, 3] [4, 5, 6])
 
 
 -- Question 2

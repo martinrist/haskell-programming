@@ -67,11 +67,13 @@ instance Functor (Or a) where
 
 -- 16.9 - QuickChecking Functor instances
 
+{-# HLINT ignore functorIdentity "Functor law" #-}
 functorIdentity :: (Functor f, Eq (f a)) =>
                              f a
                           -> Bool
 functorIdentity f = fmap id f == f
 
+{-# HLINT ignore functorCompose "Functor law" #-}
 functorCompose :: (Eq (f c), Functor f) =>
                              (a -> b)
                           -> (b -> c)
@@ -141,6 +143,7 @@ instance Functor (Constant m) where
 -- 16.13 - More structure, more functors --
 -------------------------------------------
 
+{-# HLINT ignore Wrap "Use newtype instead of data" #-}
 data Wrap f a =
     Wrap (f a)
     deriving (Eq, Show)

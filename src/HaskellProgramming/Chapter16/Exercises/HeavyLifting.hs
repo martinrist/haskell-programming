@@ -2,6 +2,7 @@ module HaskellProgramming.Chapter16.Exercises.HeavyLifting where
 
 -- Exercise 1
 
+{-# HLINT ignore a "Use <$>" #-}
 a :: [Int]
 a = fmap (+1) $ read "[1]"
 
