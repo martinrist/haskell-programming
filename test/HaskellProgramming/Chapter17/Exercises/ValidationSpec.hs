@@ -6,7 +6,7 @@ import           Test.QuickCheck.Classes
 import           Test.Hspec.Checkers
 
 testValidation :: Spec
-testValidation = do
+testValidation =
     testBatch $ applicative (undefined :: Validation [String] (String, String, Int))
 
 spec :: Spec

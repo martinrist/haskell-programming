@@ -1,10 +1,12 @@
 module HaskellProgramming.Chapter06.Exercises.DoesItTypeCheck where
 
--- Quesiton 1
+-- Question 1
+{-# HLINT ignore Person "Use newtype instead of data" #-}
 data Person =
     Person Bool
     deriving (Show)
 
+{-# HLINT ignore printPerson "Use print" #-}
 printPerson :: Person -> IO ()
 printPerson person = putStrLn (show person)
 

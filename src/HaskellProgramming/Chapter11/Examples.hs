@@ -1,5 +1,7 @@
 module HaskellProgramming.Chapter11.Examples where
 
+{-# HLINT ignore "Use newtype instead of data" #-}
+
 ------------------------------------
 -- 11.3 - Data and type constructors
 ------------------------------------
@@ -47,7 +49,7 @@ data Manufacturer
 
 data Airline
     = PapuAir
-    | CatapultsR'Us
+    | CatapultsRUs
     | TakeYourChancesUnited
     deriving (Eq, Show)
 

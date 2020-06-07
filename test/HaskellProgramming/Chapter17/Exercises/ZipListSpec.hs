@@ -7,7 +7,7 @@ import           Test.Hspec.Checkers
 
 
 testZipList :: Spec
-testZipList = do
+testZipList =
     testBatch $ applicative (undefined :: ZipList' (String, String, Int))
 
 spec :: Spec

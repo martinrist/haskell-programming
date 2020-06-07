@@ -1,9 +1,11 @@
 module HaskellProgramming.Chapter06.Exercises.WhatCanWeDo where
 
+{-# HLINT ignore Rocks "Use newtype instead of data" #-}
 data Rocks =
     Rocks String
     deriving (Eq, Show, Ord)
 
+{-# HLINT ignore Yeah "Use newtype instead of data" #-}
 data Yeah =
     Yeah Bool
     deriving (Eq, Show, Ord)

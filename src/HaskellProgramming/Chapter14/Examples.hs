@@ -7,13 +7,13 @@ import Test.QuickCheck.Gen (oneof)
 import GHC.Generics
 
 main :: IO ()
-main = hspec $ do
+main = hspec $
     describe "Addition" $ do
-        it "15 divided by 3 is 5" $ do
+        it "15 divided by 3 is 5" $
             dividedBy 15 3 `shouldBe` (5 :: Int, 0)
-        it "22 divided by 5 is 4 remainder 2" $ do
+        it "22 divided by 5 is 4 remainder 2" $
             dividedBy 22 5 `shouldBe` (4 :: Int, 2)
-        it "x + 1 is always greater than x" $ do
+        it "x + 1 is always greater than x" $
             property $ \x -> x + 1 > (x :: Int)
 
 dividedBy :: Integral a => a -> a -> (a, a)
@@ -67,10 +67,12 @@ instance Arbitrary Trivial where
     arbitrary = trivialGen
 
 -- Arbitrary instance for an identity type
+{-# HLINT ignore Identity "Use newtype instead of data" #-}
 data Identity a =
     Identity a
     deriving (Eq, Show)
 
+{-# HLINT ignore identityGen "Use <$>" #-}
 identityGen :: Arbitrary a => Gen (Identity a)
 identityGen = do
     a <- arbitrary
@@ -84,6 +86,7 @@ data Pair a b =
     Pair a b
     deriving (Eq, Show)
 
+{-# HLINT ignore pairGen "Use <$>" #-}
 pairGen :: (Arbitrary a, Arbitrary b) => Gen (Pair a b)
 pairGen = do
     a <- arbitrary

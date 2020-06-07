@@ -36,7 +36,7 @@ sentences = firstSen ++ secondSen ++ thirdSen ++ fourthSen
 
 testMyLines :: Spec
 testMyLines =
-    context "myLines" $ do
+    context "myLines" $
         it "Returns original content when recombined" $
             intercalate "\n" (myLines sentences) == sentences
 

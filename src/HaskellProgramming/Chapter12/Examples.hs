@@ -34,16 +34,12 @@ mkPerson' name age
 -- Validation function for age
 ageOkay :: Age -> Either [PersonInvalid] Age
 ageOkay age =
-    case age >= 0 of
-        True -> Right age
-        False -> Left [AgeTooLow]
+    if age >= 0 then Right age else Left [AgeTooLow]
 
 -- Validation funciton for name
 nameOkay :: Name -> Either [PersonInvalid] Name
 nameOkay name =
-    case name /= "" of
-        True -> Right name
-        False -> Left [NameEmpty]
+    if name /= "" then Right name else Left [NameEmpty]
 
 type ValidatePerson a = Either [PersonInvalid] a
 

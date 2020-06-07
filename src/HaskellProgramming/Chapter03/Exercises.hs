@@ -7,8 +7,10 @@ exercise_2a s = s ++ "!"
 exercise_2b :: String -> Char
 exercise_2b s = s !! 4
 
+{-# HLINT ignore exercise_2c "Eta reduce" #-}
 exercise_2c :: String -> String
 exercise_2c s = drop 9 s
+
 -- Note that we can remove the trailling `s`
 exercise_2c' :: String -> String
 exercise_2c' = drop 9

@@ -36,6 +36,7 @@ data WherePenguinsLive
     deriving (Eq, Show)
 
 -- and product types
+{-# HLINT ignore Penguin "Use newtype instead of data" #-}
 data Penguin =
     Peng WherePenguinsLive
     deriving (Eq, Show)
@@ -67,6 +68,7 @@ data DayOfWeek
     | Sun
     deriving (Eq, Show, Enum)
 
+{-# HLINT ignore nextDay "Use if" #-}
 nextDay :: DayOfWeek -> DayOfWeek
 nextDay d =
     case d == Sun of
@@ -80,12 +82,14 @@ funcZ x =
         then "AWESOME"
         else "wut"
 
+{-# HLINT ignore funcZ' "Use if" #-}
 funcZ' :: (Num a, Eq a) => a -> String
 funcZ' x =
     case x + 1 == 1 of
         True -> "AWESOME"
         False -> "wut"
 
+{-# HLINT ignore pal "Use if" #-}
 pal :: Eq a => [a] -> String
 pal xs =
     case xs == reverse xs of
@@ -105,26 +109,28 @@ data Employee
 reportBoss :: Employee -> Employee -> IO ()
 reportBoss e e' = putStrLn $ show e ++ " is the boss of " ++ show e'
 
+{-# HLINT ignore employeeRank "Redundant flip" #-}
 employeeRank :: Employee -> Employee -> IO ()
 employeeRank e e' =
     case compare e e' of
         GT -> reportBoss e e'
         EQ -> putStrLn "Neither employee is the boss"
-        LT -> (flip reportBoss) e e'
+        LT -> flip reportBoss e e'
 
 -- This version allows us to supply a 'comparator':
+{-# HLINT ignore employeeRank' "Redundant flip" #-}
 employeeRank' ::
        (Employee -> Employee -> Ordering) -> Employee -> Employee -> IO ()
 employeeRank' f e e' =
     case f e e' of
         GT -> reportBoss e e'
         EQ -> putStrLn "Neither employee is the boss"
-        LT -> (flip reportBoss) e e'
+        LT -> flip reportBoss e e'
 
 ---------------
 -- 7.7 - Guards
 ---------------
 myAbs :: Integer -> Integer
 myAbs x
-    | x < 0 = (-x)
+    | x < 0 = - x
     | otherwise = x

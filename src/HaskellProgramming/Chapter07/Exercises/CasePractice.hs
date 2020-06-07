@@ -7,6 +7,7 @@ functionC x y =
         then x
         else y
 
+{-# HLINT ignore functionC' "Use if" #-}
 functionC' :: Ord t => t -> t -> t
 functionC' x y =
     case x > y of
@@ -20,6 +21,7 @@ ifEvenAdd2 n =
         then n + 2
         else n
 
+{-# HLINT ignore ifEvenAdd2' "Use if" #-}
 ifEvenAdd2' :: Integral t => t -> t
 ifEvenAdd2' n =
     case even n of

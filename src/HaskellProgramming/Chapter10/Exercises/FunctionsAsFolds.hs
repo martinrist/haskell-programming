@@ -1,10 +1,12 @@
 module HaskellProgramming.Chapter10.Exercises.FunctionsAsFolds where
 
 -- Question 1 - myOr
+{-# HLINT ignore myOr "Use or" #-}
 myOr :: [Bool] -> Bool
 myOr = foldr (||) False
 
 -- Question 2- myAny
+{-# HLINT ignore myAny "Redundant if" #-}
 myAny :: (a -> Bool) -> [a] -> Bool
 myAny f =
     foldr
@@ -40,10 +42,12 @@ myFilter p =
         []
 
 -- Question 7 - squish
+{-# HLINT ignore squish "Use concat" #-}
 squish :: [[a]] -> [a]
 squish = foldr (++) []
 
 -- Question 8 - squishMap
+{-# HLINT ignore squishMap "Use concatMap" #-}
 squishMap :: (a -> [b]) -> [a] -> [b]
 squishMap f = foldr ((++) . f) []
 

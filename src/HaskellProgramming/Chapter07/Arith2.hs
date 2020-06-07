@@ -6,6 +6,8 @@ add x y = x + y
 addPF :: Int -> Int -> Int
 addPF = (+)
 
+{-# HLINT ignore addOne "Redundant lambda" #-}
+{-# HLINT ignore addOne "Avoid lambda" #-}
 addOne :: Int -> Int
 addOne = \x -> x + 1
 

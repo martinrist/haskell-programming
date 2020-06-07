@@ -17,6 +17,7 @@ printInc2 n =
      in print plusTwo
 
 -- Either of the above forms can be rewritten as a lambda
+{-# HLINT ignore printInc2' "Avoid lambda" #-}
 printInc2' n = (\plusTwo -> print plusTwo) (n + 2)
 
 -- Intermission: Exercises after 2.12
@@ -34,7 +35,7 @@ exercise_2_12_1' = x * 3 + y
     y = 1000
 
 exercise_2_12_1'' :: Int
-exercise_2_12_1'' = (\x -> (\y -> x * 3 + y)) 3 1000
+exercise_2_12_1'' = (\ x y -> x * 3 + y) 3 1000
 
 exercise_2_12_2 :: Int
 exercise_2_12_2 =
@@ -48,9 +49,11 @@ exercise_2_12_2' = x * 5
     y = 10
     x = 10 * 5 + y
 
+{-# HLINT ignore exercise_2_12_2'' "Avoid lambda" #-}
 exercise_2_12_2'' :: Int
 exercise_2_12_2'' = (\y -> (\x -> x * 5) (10 * 5 + y)) 10
 
+{-# HLINT ignore exercise_2_12_3 "Reduce duplication" #-}
 exercise_2_12_3 :: Rational
 exercise_2_12_3 =
     let x = 7

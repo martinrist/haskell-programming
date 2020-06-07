@@ -15,7 +15,7 @@ palindrome = forever $ do
             exitSuccess
 
 -- Question 3
-invalidChars :: [Char]
+invalidChars :: String
 invalidChars = " '"
 
 filterChars :: String -> String

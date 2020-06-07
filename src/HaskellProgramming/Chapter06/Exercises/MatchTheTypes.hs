@@ -50,18 +50,20 @@ sigmund' _ = myX' -- Question 9
 
 -- Question 9
 -- jung :: Ord a => [a] -> a
+{-# HLINT ignore jung "Use minimum" #-}
 jung :: [Int] -> Int -- This works, because `Int` has an instance of `Ord`
 jung xs = head (sort xs)
 
 -- Question 10
 --young :: [Char] -> Char
+{-# HLINT ignore young "Use minimum" #-}
 young :: Ord a => [a] -> a -- This will work as `Ord` has `sort`
 young xs = head (sort xs)
 
 -- Question 11
-mySort :: [Char] -> [Char]
+mySort :: String -> String
 mySort = sort
 
-signifier :: [Char] -> Char
+signifier :: String -> Char
 -- signifier :: Ord a => [a] -> a -- This won't work because `mySort` is already concretised
 signifier xs = head (mySort xs)

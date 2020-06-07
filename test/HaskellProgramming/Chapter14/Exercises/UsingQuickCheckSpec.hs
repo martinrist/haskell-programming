@@ -85,6 +85,7 @@ testQuotRemDivMod = context "quotRemDivMod" $ do
 
 -- Question 7 - reverse twice
 
+{-# HLINT ignore reverseTwiceProperty "Avoid reverse" #-}
 reverseTwiceProperty :: Eq a => [a] -> Bool
 reverseTwiceProperty xs = (reverse . reverse) xs == xs
 
@@ -97,6 +98,7 @@ testReverseTwice = context "reverse" $ do
 
 -- Question 8 - $ and composition
 
+{-# HLINT ignore applicationProperty "Redundant $" #-}
 applicationProperty :: Eq b => Fun a b -> a -> Bool
 applicationProperty (Fun _ f) a = (f $ a) == f a
 
@@ -123,6 +125,7 @@ testFoldrColonProperty = context "foldr (:)" $
     it "`foldr (:) == (++)`" $
        property (foldrColonProperty :: String -> String -> Bool)
 
+{-# HLINT ignore foldrConcatProperty "Use concat" #-}
 foldrConcatProperty :: (Eq a, Foldable t) => t [a] -> Bool
 foldrConcatProperty tas = foldr (++) [] tas == concat tas
 

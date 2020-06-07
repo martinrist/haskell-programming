@@ -17,6 +17,7 @@ b = head [(0, "doge"), (1, "kitteh")]
 c :: (Int, String)
 c = head [(0 :: Int, "doge"), (1, "kitteh")]
 
+{-# HLINT ignore d "Redundant if" #-}
 d :: Bool
 d =
     if False

@@ -12,9 +12,10 @@ type Presses = Int
 
 data Button =
     Button Digit
-           [Char]
+           String
     deriving (Eq, Show)
 
+{-# HLINT ignore DaPhone "Use newtype instead of data" #-}
 data DaPhone =
     DaPhone [Button]
     deriving (Eq, Show)
@@ -60,10 +61,10 @@ findChar c (Button d cs) =
         Nothing -> Nothing
         Just x -> Just (d, x + 1)
   where
-    maybePresses = findIndex (\x -> x == c) cs
+    maybePresses = elemIndex c cs
 
 cellPhonesDead :: DaPhone -> String -> [(Digit, Presses)]
-cellPhonesDead p s = foldr ((++) . (reverseTaps p)) [] s
+cellPhonesDead p = concatMap (reverseTaps p)
 
 fingerTaps :: [(Digit, Presses)] -> Presses
 fingerTaps = foldr ((+) . snd) 0
@@ -72,6 +73,6 @@ frequencies :: (Ord a, Eq a) => [a] -> [(a, Int)]
 frequencies = map (\xs -> (head xs, length xs)) . group . sort
 
 mostPopularLetter :: String -> Char
-mostPopularLetter = fst . (maximumBy compareSnd) . frequencies
+mostPopularLetter = fst . maximumBy compareSnd . frequencies
   where
     compareSnd (_, ca) (_, cb) = compare ca cb

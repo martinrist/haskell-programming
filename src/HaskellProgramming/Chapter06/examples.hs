@@ -57,6 +57,7 @@ data Date' =
           Int
     deriving (Eq)
 
+{-# HLINT ignore Identity "Use newtype instead of data" #-}
 data Identity a =
     Identity a
     deriving (Show)

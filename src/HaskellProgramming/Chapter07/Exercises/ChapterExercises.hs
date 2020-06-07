@@ -27,6 +27,7 @@ question1Tests =
         it "x = 0" $ tensDigit 0 `shouldBe` (0 :: Int)
 
 -- Question 2
+{-# HLINT ignore foldBool1 "Use if" #-}
 foldBool1 :: a -> a -> Bool -> a
 foldBool1 x y b =
     case b of

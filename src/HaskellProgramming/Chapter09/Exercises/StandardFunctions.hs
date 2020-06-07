@@ -1,5 +1,8 @@
 module HaskellProgramming.Chapter09.Exercises.StandardFunctions where
 
+{-# HLINT ignore "Redundant if" #-}
+{-# HLINT ignore "Redundant ==" #-}
+
 -- Question 1
 myOr :: [Bool] -> Bool
 myOr [] = False
@@ -30,6 +33,7 @@ myReverse [] = []
 myReverse (x:xs) = myReverse xs ++ [x]
 
 -- Question 5
+{-# HLINT ignore squish "Use foldr" #-}
 squish :: [[a]] -> [a]
 squish [] = []
 squish (x:xs) = x ++ squish xs

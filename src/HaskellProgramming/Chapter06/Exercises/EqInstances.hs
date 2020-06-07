@@ -1,6 +1,7 @@
 module HaskellProgramming.Chapter06.Exercises.EqInstances where
 
 -- Question 1
+{-# HLINT ignore TisAnInteger "Use newtype instead of data" #-}
 data TisAnInteger =
     TisAn Integer
 
