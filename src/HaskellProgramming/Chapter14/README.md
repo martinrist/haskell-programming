@@ -169,7 +169,7 @@
     ```
 
 
-## 14.6 - Kicking around QuickCheck
+## 14.6 - `Arbitrary` Instances
 
 - To enable our type to be used with QuickCheck it needs to have an instance for `Arbitrary` 
 

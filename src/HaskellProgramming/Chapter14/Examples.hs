@@ -51,9 +51,9 @@ runQc :: IO ()
 runQc = quickCheck prop_additionGreater
 
 
------------------------------------
--- 14.6 - Kicking around QuickCheck
------------------------------------
+-------------------------------
+-- 14.6 - `Arbitrary` Instances
+-------------------------------
 
 -- Arbitrary instance for a trivial type
 data Trivial =
@@ -115,7 +115,6 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Sum a b) where
 sumGenMoreFirst :: (Arbitrary a, Arbitrary b) => Gen (Sum a b)
 sumGenMoreFirst = do
     a <- arbitrary
-    b <- arbitrary
     frequency [(10, return $ First a),
                ( 1, return $ Second b)]
 
