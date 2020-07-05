@@ -16,6 +16,21 @@
                 (1 + 1) > 1 `shouldBe` True
     ```
 
+- [`hspec`](http://hackage.haskell.org/package/hspec-2.7.1/docs/Test-Hspec.html#v:hspec) takes a `Spec`, runs it and
+outputs the results.
+
+- Spec items are created with the [`it`](http://hackage.haskell.org/package/hspec-2.7.1/docs/Test-Hspec.html#v:it)
+function, which has a text description of the desired behaviour, and an example of that behaviour.
+
+- Combinators like [`describe`](http://hackage.haskell.org/package/hspec-2.7.1/docs/Test-Hspec.html#v:describe) combine
+a list of specs into a larger spec.
+
+-  `shouldBe` is like a version of `==` with extra features for Hspec:
+   ```haskell
+   > :t shouldBe
+   shouldBe :: (Eq a, Show a) => a -> a -> Expectation
+   ```
+
 - Sample output when run:
 
     ```haskell
@@ -28,19 +43,16 @@
     1 examples, 0 failures
     ```
 
-- `shouldBe` is like a version of `==` with extra features for Hspec:
-
-    ```haskell
-    > :t shouldBe
-    shouldBe :: (Eq a, Show a) => a -> a -> Expectation
-    ```
+- More details can be found in the [Hspec User Manual](http://hspec.github.io).
 
 
 ## 14.4 - QuickCheck
 
-- QuickCheck allows us to do _property testing_ - asserting properties that should hold.
+- [QuickCheck](https://hackage.haskell.org/package/QuickCheck) allows us to do _property testing_ - asserting properties
+that should hold.
 
-- QuickCheck is integrated with HSpec, so to make a simple property assertion:
+- QuickCheck is integrated with HSpec, so to make a simple property assertion, we can use
+[`property`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:property):
 
     ```haskell
     import Test.QuickCheck
@@ -54,7 +66,9 @@
 
 - We need to assert the type of `x` in the `property`, otherwise we'll get an error.
 
-- QuickCheck relies on a typeclass `Arbitrary` and a newtype called `Gen` for generating random data to be used for testing:
+- QuickCheck relies on a typeclass [`Arbitrary`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#t:Arbitrary)
+and a newtype called [`Gen`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#t:Gen)
+for generating random data to be used for testing:
 
     ```haskell
     > :t arbitrary
@@ -66,13 +80,16 @@
         shrink :: a -> [a]
     ```
 
-- When using `arbitrary`, we need to specify the type in order to dispatch to the right typeclass instance:
+- When using [`arbitrary`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:arbitrary),
+we need to specify the type in order to dispatch to the right typeclass instance:
 
     ```haskell
     > genInt = arbitrary :: Gen Int
     ```
 
-- Then we can call `sample` to retrieve a random value, or `sample'` to return a list:
+- Then we can call [`sample`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:sample)
+to retrieve a random value, or [`sample'`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:sample-39-)
+to return a list:
 
     ```haskell
     > :t sample
@@ -107,7 +124,7 @@
     [1,1,1,1,1,1,1,1,1,1,1]
     ```
 
-- To randomly select from various elements, use `elements`:
+- To randomly select from various elements, use [`elements`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:elements):
 
     ```haskell
     -- Uniform distribution
@@ -121,7 +138,8 @@
     [3,3,3,3,1,2,2,2,1,3,3]
     ```
 
-- An alternative is `choose`, which returns a generator which returns values in a range:
+- An alternative is [`choose`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:choose),
+which returns a generator which returns values in a range:
 
     ```haskell
     oneThroughTen :: Gen Int
@@ -145,7 +163,8 @@
     [(0,'\169'),(0,','),(1,'\222'),(2,'\ETX'),(7,'Q'),(9,'\STX'),(-7,'}'),(5,'\EM'),(-3,'+'),(-9,'\199'),(3,'b')]
     ```
 
-- We can adjust the frequency of values using `frequency`, e.g. to create a `Maybe a` generator that returns more `Just a`'s:
+- We can adjust the frequency of values using [`frequency`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:frequency),
+e.g. to create a `Maybe a` generator that returns more `Just a`'s:
 
     ```haskell
     genMaybe :: Arbitrary a => Gen (Maybe a)
@@ -158,7 +177,8 @@
     [Just 0,Just 0,Just 1,Just 1,Just (-1),Just (-3),Just (-9),Just 11,Just 2,Nothing,Just (-13)]
     ```
 
-- To use QuickCheck without Hspec, just write a function for the property, then call `quickCheck`:
+- To use QuickCheck without Hspec, just write a function for the property, then call
+[`quickCheck`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:quickCheck):
 
     ```haskell
     prop_additionGreater :: Int -> Bool
@@ -171,7 +191,8 @@
 
 ## 14.6 - `Arbitrary` Instances
 
-- To enable our type to be used with QuickCheck it needs to have an instance for `Arbitrary` 
+- To enable our type to be used with QuickCheck it needs to have an instance for
+[`Arbitrary`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#t:Arbitrary):
 
     ```haskell
     data Trivial = Trivial deriving (Eq, Show)
@@ -206,7 +227,8 @@
     [Identity 0, Identity 1, Identity (-4) ...]
     ```
 
-- `Arbitrary` instances for product types - just pick an arbitrary value for each of the type arguments:
+- [`Arbitrary`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#t:Arbitrary) instances
+for product types - just pick an arbitrary value for each of the type arguments:
 
     ```haskell
     data Pair a b = Pair a b deriving (Eq, Show)
@@ -225,7 +247,10 @@
     [ Pair 0 "", Pair 2 "", Pair 0 ";@yf475d", Pair (-4) "\229rC\205S\SUB\CAN" ...]
     ```
 
-- `Arbitrary` instances for sum types are more interesting because you need to choose between the two possibilities, using `oneof` to create a `Gen a` from a list of `Gen a` (with uniform distribution):
+- [`Arbitrary`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#t:Arbitrary) instances
+ for sum types are more interesting because you need to choose between the two possibilities, using
+ [`oneof`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:oneof) to create a
+ `Gen a` from a list of `Gen a` (with uniform distribution):
 
     ```haskell
     data Sum a b = First a | Second b deriving (Eq, Show)
@@ -241,7 +266,8 @@
         arbitrary = sumGenEqual
     ```
 
-- For non-uniform distribution, we can use `frequency` - e.g. from the `Arbitrary` instance for `Maybe`:
+- For non-uniform distribution, we can use [`frequency`](https://hackage.haskell.org/package/QuickCheck-2.14.1/docs/Test-QuickCheck.html#v:frequency) -
+e.g. from the `Arbitrary` instance for `Maybe`:
 
     ```haskell
     instance Arbitrary a => Arbitrary (Maybe a) where
