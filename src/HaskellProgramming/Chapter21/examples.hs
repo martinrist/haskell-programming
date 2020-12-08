@@ -1,3 +1,5 @@
+module HaskellProgramming.Chapter21.Examples where
+
 import           Data.ByteString.Lazy hiding (map)
 import qualified Data.Map             as M
 import           Network.Wreq
@@ -123,7 +125,3 @@ instance Foldable (Either' a) where
 instance Traversable (Either' a) where
     traverse _ (Left' x)  = pure (Left' x)
     traverse f (Right' y) = Right' <$> f y
-
-
-instance Traversable ((,) a) where
-    traverse = undefined

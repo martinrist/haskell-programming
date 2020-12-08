@@ -1,5 +1,7 @@
 {-# LANGUAGE FlexibleContexts #-}
 
+module HaskellProgramming.Chapter21.ChapterExercises where
+
 import           Data.Monoid              ((<>))
 import           Test.QuickCheck
 import           Test.QuickCheck.Checkers

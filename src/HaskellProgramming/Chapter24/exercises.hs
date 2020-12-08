@@ -1,3 +1,5 @@
+module HaskellProgramming.Chapter24.Exercises where
+
 import           Control.Applicative
 import           Data.Ratio              ((%))
 import           Text.Parser.Combinators

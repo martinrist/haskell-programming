@@ -1,3 +1,5 @@
+module HaskellProgramming.Chapter27.Exercises where
+    
 ----------------------------
 -- Chapter 27 - Exercises --
 ----------------------------

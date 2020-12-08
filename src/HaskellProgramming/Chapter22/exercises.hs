@@ -1,5 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 
+module HaskellProgramming.Chapter22.Exercises where
+
 import           Data.Char
 
 ----------------------------

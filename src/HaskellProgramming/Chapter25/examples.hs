@@ -1,5 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 
+module HaskellProgramming.Chapter25.Examples where
+
 import           Control.Monad (join)
 
 --------------------------------------------

@@ -1,5 +1,6 @@
 {-# LANGUAGE InstanceSigs #-}
 
+module HaskellProgramming.Chapter26.Exercises where
 import           Control.Monad
 import           Control.Monad.Trans.Class
 

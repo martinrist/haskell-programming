@@ -1,3 +1,5 @@
+module HaskellProgramming.Chapter18.Exercises where
+
 import Control.Monad (join)
 import Test.QuickCheck
 import Test.QuickCheck.Checkers

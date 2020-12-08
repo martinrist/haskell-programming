@@ -1,5 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 
+module HaskellProgramming.Chapter26.ChapterExercises where
+
 import           Control.Applicative        ((<|>))
 import           Control.Monad
 import           Control.Monad.IO.Class

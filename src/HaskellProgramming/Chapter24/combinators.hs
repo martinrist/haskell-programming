@@ -1,6 +1,6 @@
 {-# LANGUAGE InstanceSigs #-}
 
-module Combinators where
+module HaskellProgramming.Chapter24.Combinators where
 
 import           Control.Applicative (liftA2)
 import           Data.Char
@@ -91,7 +91,7 @@ map (Parser p) f =
 -- Infix versions of operators
 (.>>.) = andThen
 (<|>) = orElse
-(|>>) = Combinators.map
+(|>>) = HaskellProgramming.Chapter24.Combinators.map
 
 
 instance Functor Parser where
@@ -117,16 +117,13 @@ andThen' = liftA2 (,)
 
 
 -- Are there really two Monoid instances for Parser, one which is andThen-based, the other of which is `orElse` based?
+instance Semigroup a => Semigroup (Parser a) where
+    (<>) :: Parser a -> Parser a -> Parser a
+    (<>) p1 p2 = snd <$> (p1 .>>. p2)
+
 instance Monoid a => Monoid (Parser a) where
     mempty :: Parser a
     mempty = Parser $ \input -> Ok (mempty, input)
-
-    mappend :: Parser a -> Parser a -> Parser a
-    mappend p1 p2 = snd <$> (p1 .>>. p2)
-
-
-
-
 
 
 
@@ -160,9 +157,11 @@ sequence ps = let pls = reverse $ (\p -> (:[]) <$> p) <$> ps in
 choiceM :: Monoid a => [Parser a] -> Parser a
 choiceM = foldr (<|>) mempty
 
+instance Semigroup Char where
+    (<>) c1 c2 = c2
+
 -- This doesn't work well, because there's no sensible 'mempty' for Char
 -- ('' is a syntax error in Haskell)
 instance Monoid Char where
     -- Eek!
     mempty = ' '
-    mappend c1 c2 = c2

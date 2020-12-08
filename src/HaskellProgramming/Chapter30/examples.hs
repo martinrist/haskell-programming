@@ -1,5 +1,7 @@
 {-# LANGUAGE ExistentialQuantification #-}
 
+module HaskellProgramming.Chapter30.Examples where
+
 import Control.Exception
 import Data.Typeable
 

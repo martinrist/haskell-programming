@@ -1,6 +1,8 @@
 {-# LANGUAGE InstanceSigs      #-}
 {-# LANGUAGE OverloadedStrings #-}
 
+module HaskellProgramming.Chapter26.Examples where
+
 import           Control.Monad.Trans.Class
 import           Data.Monoid               (mconcat)
 import           Data.Text.Internal.Lazy

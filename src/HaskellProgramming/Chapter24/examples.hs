@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+module HaskellProgramming.Chapter24.Examples where
+
 import           Control.Applicative
 import           Data.Attoparsec.Text (parseOnly)
 import           Data.Ratio           ((%))
@@ -101,7 +103,7 @@ polyParseFraction = do
     _ <- char '/'
     denominator <- decimal
     case denominator of
-         0 -> fail "Denominator cannot be zero"
+         0 -> undefined
          _ -> return (numerator % denominator)
 
 

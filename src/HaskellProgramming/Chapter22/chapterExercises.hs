@@ -1,3 +1,5 @@
+module HaskellProgramming.Chapter22.ChapterExercises where
+
 import           Control.Applicative
 import           Data.Maybe
 

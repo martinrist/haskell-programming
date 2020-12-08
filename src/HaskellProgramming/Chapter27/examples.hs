@@ -1,3 +1,5 @@
+module HaskellProgramming.Chapter27.Examples where
+
 import           Debug.Trace (trace)
 
 ---------------------------------

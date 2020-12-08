@@ -1,5 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 
+module HaskellProgramming.Chapter26.ExamplesBuiltIn where
+
 import Control.Monad.Trans.Except
 import Control.Monad.Trans.Maybe
 

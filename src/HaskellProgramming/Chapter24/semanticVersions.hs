@@ -1,8 +1,8 @@
-module Chapter24.Exercises.SemVer where
+module HaskellProgramming.Chapter24.SemanticVersions where
 
 import           Control.Applicative
 import           Test.Hspec
-import           Text.Trifecta
+import           Text.Trifecta hiding (runParser)
 
 data NumberOrString
     = StringPart String

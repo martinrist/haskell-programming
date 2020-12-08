@@ -1,3 +1,5 @@
+module HaskellProgramming.Chapter20.Exercises where
+
 import Data.Monoid
 
 ----------------------------

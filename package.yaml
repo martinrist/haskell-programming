@@ -11,7 +11,7 @@ library:
     - src
   ghc-options:
     - -Wall
-    - -Werror
+    - -Werrors
     - -Wno-unrecognised-pragmas
   dependencies:
     - base

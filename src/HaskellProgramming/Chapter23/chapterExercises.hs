@@ -1,3 +1,5 @@
+module HaskellProgramming.Chapter23.ChapterExercises where
+
 import           Control.Monad.Trans.State hiding (get, modify, put)
 
 ------------------------------------

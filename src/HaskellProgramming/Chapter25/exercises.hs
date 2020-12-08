@@ -1,5 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 
+module HaskellProgramming.Chapter25.Exercises where
+
 import           Data.Monoid
 
 ----------------------------

@@ -1,9 +1,8 @@
+module HaskellProgramming.Chapter28.Examples where
+
 ----------------------------------
 -- Chapter 28 - Basic Libraries --
 ----------------------------------
-
-module Main where
-
 import           Criterion.Main
 
 

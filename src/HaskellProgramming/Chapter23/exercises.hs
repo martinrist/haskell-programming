@@ -1,5 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 
+module HaskellProgramming.Chapter23.Exercises where
+
 ----------------------------
 -- Chapter 23 - Exercises --
 ----------------------------

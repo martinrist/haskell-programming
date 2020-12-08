@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module HitCounter where
+module HaskellProgramming.Chapter26.HitCounter where
 
 import           Control.Monad.IO.Class
 import           Control.Monad.Trans.Class

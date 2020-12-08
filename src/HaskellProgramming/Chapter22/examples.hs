@@ -1,5 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 
+module HaskellProgramming.Chapter22.Examples where
+
 import           Control.Applicative (liftA2)
 
 -----------------------------------------

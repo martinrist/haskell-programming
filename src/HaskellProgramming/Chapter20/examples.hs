@@ -1,3 +1,5 @@
+module HaskellProgramming.Chapter20.Examples where
+
 --------------------------------------
 -- Chapter 20 - Foldable - Examples --
 --------------------------------------

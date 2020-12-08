@@ -9,7 +9,7 @@
 -- alias=claw
 
 
-module Data.Ini where
+module HaskellProgramming.Chapter24.ConfigParsing where
 
 import           Control.Applicative
 import           Data.ByteString     (ByteString)
