@@ -3,7 +3,6 @@ module HaskellProgramming.Chapter14.Examples where
 
 import Test.Hspec
 import Test.QuickCheck
-import Test.QuickCheck.Gen (oneof)
 import GHC.Generics
 
 main :: IO ()
@@ -115,6 +114,7 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Sum a b) where
 sumGenMoreFirst :: (Arbitrary a, Arbitrary b) => Gen (Sum a b)
 sumGenMoreFirst = do
     a <- arbitrary
+    b <- arbitrary
     frequency [(10, return $ First a),
                ( 1, return $ Second b)]
 
