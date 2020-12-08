@@ -17,7 +17,7 @@ import Data.Typeable
 import Database.SQLite.Simple hiding (close)
 import qualified Database.SQLite.Simple as SQLite
 import Database.SQLite.Simple.Types
-import Network.Socket hiding (close, recv)
+import Network.Socket
 import Network.Socket.ByteString (recv, sendAll)
 import Text.RawString.QQ
 
@@ -134,7 +134,7 @@ handleQueries dbConn sock =
         (soc, _) <- accept sock
         putStrLn "Got connection, handling query"
         handleQuery dbConn soc
-        sClose soc
+        Network.Socket.close soc
 
 main :: IO ()
 main =
@@ -146,9 +146,9 @@ main =
                 (Just "79")
         let serveraddr = head addrinfos
         sock <- socket (addrFamily serveraddr) Stream defaultProtocol
-        bindSocket sock (addrAddress serveraddr)
+        Network.Socket.bind sock (addrAddress serveraddr)
         listen sock 1
         conn <- open "finger.db"
         handleQueries conn sock
         SQLite.close conn
-        sClose sock
+        Network.Socket.close sock

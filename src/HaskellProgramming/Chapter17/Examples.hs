@@ -122,6 +122,3 @@ instance Monoid a => Monoid (ZipList a) where
 
 -- instance Arbitrary a => Arbitrary (Sum a) where
 --     arbitrary = Sum <$> arbitrary
-
-instance Eq a => EqProp (ZipList a) where
-    (=-=) = eq

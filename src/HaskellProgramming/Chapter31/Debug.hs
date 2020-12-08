@@ -3,7 +3,7 @@
 module HaskellProgramming.Chapter31.Debug where
 
 import Control.Monad (forever)
-import Network.Socket hiding (recv)
+import Network.Socket
 import Network.Socket.ByteString (recv, sendAll)
 
 logAndEcho :: Socket -> IO ()
@@ -11,7 +11,7 @@ logAndEcho sock =
     forever $ do
         (soc, _) <- accept sock
         printAndKickback soc
-        sClose soc
+        close soc
   where
     printAndKickback conn = do
         msg <- recv conn 1024
@@ -28,7 +28,7 @@ main =
                 (Just "79")
         let serveraddr = head addrinfos
         sock <- socket (addrFamily serveraddr) Stream defaultProtocol
-        bindSocket sock (addrAddress serveraddr)
+        bind sock (addrAddress serveraddr)
         listen sock 1
         logAndEcho sock
-        sClose sock
+        close sock
