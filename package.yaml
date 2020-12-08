@@ -9,7 +9,6 @@ copyright:           "2019 Martin Rist"
 library:
   source-dirs:
     - src
-    - test
   ghc-options:
     - -Wall
     - -Werror

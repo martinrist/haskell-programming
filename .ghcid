@@ -1,3 +1,3 @@
---command "stack ghci haskell-programming:lib"
+--command "stack ghci haskell-programming:lib haskell-programming:test:haskell-programming-test"
 --test "Spec.main"
 --lint
