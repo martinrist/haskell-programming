@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/martinrist/haskell-programming.svg?branch=master)](https://travis-ci.com/martinrist/haskell-programming)
-
 # ['Haskell Programming from First Principles'](http://haskellbook.com)
 
 - [x] [Chapter 5 - Types](src/HaskellProgramming/Chapter05/README.md)
